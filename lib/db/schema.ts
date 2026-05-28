@@ -5,6 +5,7 @@ import {
   timestamp,
   integer,
   uuid,
+  primaryKey,
 } from "drizzle-orm/pg-core";
 
 // ENUMS
@@ -80,7 +81,9 @@ export const verificationTokensTable = pgTable("verification_tokens", {
   identifier: text("identifier").notNull(),
   token: text("token").notNull().unique(),
   expires: timestamp("expires", { mode: "date" }).notNull(),
-});
+}, (table) => ({
+  pk: primaryKey({ columns: [table.identifier, table.token] }),
+}));
 
 export type SelectVerificationToken = typeof verificationTokensTable.$inferSelect;
 export type InsertVerificationToken = typeof verificationTokensTable.$inferInsert;
