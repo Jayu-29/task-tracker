@@ -55,7 +55,7 @@ export const accountsTable = pgTable("accounts", {
   providerAccountId: text("provider_account_id").notNull(),
   refresh_token: text("refresh_token"),
   access_token: text("access_token"),
-  expires_at: text("expires_at"),
+  expires_at: integer("expires_at"),
   token_type: text("token_type"),
   scope: text("scope"),
   id_token: text("id_token"),
@@ -66,8 +66,7 @@ export type SelectAccount = typeof accountsTable.$inferSelect;
 export type InsertAccount = typeof accountsTable.$inferInsert;
 
 export const sessionsTable = pgTable("sessions", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  sessionToken: text("session_token").notNull().unique(),
+  sessionToken: text("session_token").primaryKey(),
   userId: uuid("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
