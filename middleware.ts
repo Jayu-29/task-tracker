@@ -1,32 +1,28 @@
-import { auth } from "@/lib/auth";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const PROTECTED_ROUTES = ["/dashboard", "/admin"];
 const ADMIN_ROUTES = ["/admin"];
 
-export default auth((req) => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
-  const userRole = req.auth?.user?.role;
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
 
-  const isProtected = PROTECTED_ROUTES.some((path) =>
-    nextUrl.pathname.startsWith(path)
-  );
-  const isAdminRoute = ADMIN_ROUTES.some((path) =>
-    nextUrl.pathname.startsWith(path)
-  );
+  const isProtected = PROTECTED_ROUTES.some((p) => pathname.startsWith(p));
+  const isAdminRoute = ADMIN_ROUTES.some((p) => pathname.startsWith(p));
 
-  if (isProtected && !isLoggedIn) {
-    return NextResponse.redirect(new URL("/login", nextUrl));
+  const sessionCookie =
+    req.cookies.get("better-auth.session_token") ??
+    req.cookies.get("__Secure-better-auth.session_token");
+
+  if (isProtected && !sessionCookie) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
-  if (isAdminRoute && userRole !== "ADMIN") {
-    return NextResponse.redirect(new URL("/dashboard", nextUrl));
+  if (isAdminRoute && !sessionCookie) {
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/dashboard/:path*", "/admin/:path*"],
