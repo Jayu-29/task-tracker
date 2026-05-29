@@ -5,9 +5,9 @@ import { tasksTable, activityLogsTable } from "@/lib/db/schema";
 import { requireSession } from "@/lib/session";
 import { revalidatePath } from "next/cache";
 import { nanoid } from "nanoid";
-import { createTaskSchema, updateTaskStatusSchema } from "@/lib/validations/task";
 import { eq } from "drizzle-orm";
-import { canCreateTask, canUpdateTaskStatus, canDeleteTask } from "@/lib/permissions";
+import { createTaskSchema, updateTaskSchema, updateTaskStatusSchema } from "@/lib/validations/task";
+import { canCreateTask, canUpdateTaskStatus, canDeleteTask, canEditTask } from "@/lib/permissions";
 
 export async function createTask(formData: unknown) {
   const session = await requireSession();
@@ -99,6 +99,34 @@ export async function deleteTask(taskId: string) {
     userId: session.user.id,
     taskId,
     action: "Deleted task",
+  });
+
+  revalidatePath("/dashboard/tasks");
+  return { success: true };
+}
+
+export async function updateTask(taskId: string, formData: unknown) {
+  const session = await requireSession();
+
+  if (!canEditTask(session.user)) {
+    throw new Error("Not authorized");
+  }
+
+  const parsed = updateTaskSchema.safeParse(formData);
+  if (!parsed.success) {
+    return { error: parsed.error.flatten().fieldErrors };
+  }
+
+  await db
+    .update(tasksTable)
+    .set(parsed.data)
+    .where(eq(tasksTable.id, taskId));
+
+  await db.insert(activityLogsTable).values({
+    id: nanoid(),
+    userId: session.user.id,
+    taskId,
+    action: `Updated task "${parsed.data.title ?? taskId}"`,
   });
 
   revalidatePath("/dashboard/tasks");
