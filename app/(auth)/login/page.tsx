@@ -1,16 +1,29 @@
 "use client";
 
-import { signIn } from "@/lib/auth-client";
-import { useState } from "react";
+import { signIn, useSession } from "@/lib/auth-client";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session?.user) {
+      if (session.user.role === "ADMIN") {
+        router.push("/dashboard");
+      } else {
+        router.push("/employee");
+      }
+    }
+  }, [session, router]);
 
   async function handleGoogleSignIn() {
     setLoading(true);
     await signIn.social({
       provider: "google",
-      callbackURL: "/dashboard",
+      callbackURL: "/auth/callback",
     });
     setLoading(false);
   }

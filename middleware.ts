@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const PROTECTED_ROUTES = ["/dashboard", "/admin"];
-const ADMIN_ROUTES = ["/admin"];
+const PROTECTED_ROUTES = ["/dashboard", "/admin", "/employee"];
+const ADMIN_ROUTES = ["/dashboard", "/admin"];
+const EMPLOYEE_ROUTES = ["/employee"];
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -25,5 +26,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/admin/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*", "/employee/:path*"],
 };

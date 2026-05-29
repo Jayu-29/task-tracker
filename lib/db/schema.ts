@@ -3,8 +3,6 @@ import {
   pgEnum,
   text,
   timestamp,
-  integer,
-  primaryKey,
 } from "drizzle-orm/pg-core";
 
 // Enums 
@@ -38,7 +36,6 @@ export const tasksTable = pgTable("tasks", {
   dueDate: timestamp("due_date", { mode: "date" }),
   importance: importanceEnum("importance").notNull().default("MEDIUM"),
   urgency: urgencyEnum("urgency").notNull().default("MEDIUM"),
-  priority: integer("priority").default(5),
   status: statusEnum("status").notNull().default("TODO"),
   category: categoryEnum("category").notNull().default("OPERATIONS"),
   assignedTo: text("assigned_to"),
