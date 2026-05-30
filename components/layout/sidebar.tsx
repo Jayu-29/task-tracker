@@ -33,15 +33,15 @@ export default function Sidebar() {
       <div
         className="w-[52px] flex flex-col items-center py-4 gap-1"
         style={{
-          backgroundColor: "#161820",
+          backgroundColor: "#212121",
           borderRight: "1px solid rgba(255,255,255,0.08)",
         }}
       >
         <div
           className="w-8 h-8 rounded-lg flex items-center justify-center mb-4"
-          style={{ backgroundColor: "#e8e8e8" }}
+          style={{ backgroundColor: "#f0f0f0" }}
         >
-          <Layers className="w-4 h-4" style={{ color: "#0f1117" }} />
+          <Layers className="w-4 h-4" style={{ color: "#1a1a1a" }} />
         </div>
 
         {[...mainNav, ...reportNav].map((item) => (
@@ -52,12 +52,12 @@ export default function Sidebar() {
             style={{
               backgroundColor:
                 pathname === item.href
-                  ? "#1c1e28"
+                  ? "#2a2a2a"
                   : "transparent",
               color:
                 pathname === item.href
-                  ? "#e8e8e8"
-                  : "#6b7280",
+                  ? "#f0f0f0"
+                  : "#737373",
               border:
                 pathname === item.href
                   ? "1px solid rgba(255,255,255,0.1)"
@@ -72,7 +72,7 @@ export default function Sidebar() {
           <Link
             href="/dashboard/settings"
             className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
-            style={{ color: "#6b7280" }}
+            style={{ color: "#737373" }}
           >
             <Settings className="w-4 h-4" />
           </Link>
@@ -83,7 +83,7 @@ export default function Sidebar() {
       <div
         className="w-[200px] flex flex-col"
         style={{
-          backgroundColor: "#0f1117",
+          backgroundColor: "#1a1a1a",
           borderRight: "1px solid rgba(255,255,255,0.08)",
         }}
       >
@@ -91,10 +91,10 @@ export default function Sidebar() {
           className="px-4 py-4"
           style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
         >
-          <p className="text-sm font-medium" style={{ color: "#e8e8e8" }}>
+          <p className="text-sm font-medium" style={{ color: "#f0f0f0" }}>
             TeamTasks
           </p>
-          <p className="text-xs mt-0.5" style={{ color: "#6b7280" }}>
+          <p className="text-xs mt-0.5" style={{ color: "#737373" }}>
             Workspace
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function Sidebar() {
         <div className="flex-1 py-2">
           <p
             className="text-[10px] uppercase tracking-widest px-4 py-2"
-            style={{ color: "#6b7280" }}
+            style={{ color: "#737373" }}
           >
             Planning
           </p>
@@ -112,14 +112,14 @@ export default function Sidebar() {
               href={item.href}
               className="flex items-center gap-2 px-4 py-1.5 text-sm transition-colors"
               style={{
-                color: pathname === item.href ? "#e8e8e8" : "#6b7280",
+                color: pathname === item.href ? "#f0f0f0" : "#737373",
                 backgroundColor:
                   pathname === item.href
                     ? "rgba(255,255,255,0.05)"
                     : "transparent",
                 borderRight:
                   pathname === item.href
-                    ? "2px solid #e8e8e8"
+                    ? "2px solid #f0f0f0"
                     : "none",
                 fontWeight: pathname === item.href ? 500 : 400,
               }}
@@ -131,7 +131,7 @@ export default function Sidebar() {
 
           <p
             className="text-[10px] uppercase tracking-widest px-4 py-2 mt-2"
-            style={{ color: "#6b7280" }}
+            style={{ color: "#737373" }}
           >
             Manage
           </p>
@@ -141,14 +141,14 @@ export default function Sidebar() {
               href={item.href}
               className="flex items-center gap-2 px-4 py-1.5 text-sm transition-colors"
               style={{
-                color: pathname === item.href ? "#e8e8e8" : "#6b7280",
+                color: pathname === item.href ? "#f0f0f0" : "#737373",
                 backgroundColor:
                   pathname === item.href
                     ? "rgba(255,255,255,0.05)"
                     : "transparent",
                 borderRight:
                   pathname === item.href
-                    ? "2px solid #e8e8e8"
+                    ? "2px solid #f0f0f0"
                     : "none",
                 fontWeight: pathname === item.href ? 500 : 400,
               }}

@@ -13,7 +13,7 @@ export default async function DashboardLayout({
   return (
     <div
       className="flex h-screen overflow-hidden"
-      style={{ backgroundColor: "#0f1117", color: "#e8e8e8" }}
+      style={{ backgroundColor: "#1a1a1a", color: "#f0f0f0" }}
     >
       {/* Desktop: icon sidebar */}
       <div className="hidden md:flex">
@@ -25,7 +25,7 @@ export default async function DashboardLayout({
         <Topbar user={session.user} />
         <main
           className="flex-1 overflow-y-auto"
-          style={{ backgroundColor: "#0f1117" }}
+          style={{ backgroundColor: "#1a1a1a" }}
         >
           {children}
         </main>

@@ -24,20 +24,21 @@ export default function UpdateTaskStatus({
   }
 
   return (
-    <div className="flex items-center gap-2">
-      <label className="text-xs font-medium text-muted-foreground">Status:</label>
-      <select
-        value={status}
-        onChange={handleChange}
-        disabled={loading}
-        className="text-xs border rounded-lg px-2 py-1 disabled:opacity-50"
-      >
-        <option value="TODO">Todo</option>
-        <option value="IN_PROGRESS">In Progress</option>
-        <option value="DONE">Done</option>
-        <option value="BLOCKED">Blocked</option>
-      </select>
-      {loading && <span className="text-xs text-muted-foreground">Saving...</span>}
-    </div>
+    <select
+      value={status}
+      onChange={handleChange}
+      disabled={loading}
+      className="text-xs rounded-lg px-2 py-1 outline-none disabled:opacity-50"
+      style={{
+        backgroundColor: "#2a2a2a",
+        border: "1px solid rgba(255,255,255,0.08)",
+        color: "#f0f0f0",
+      }}
+    >
+      <option value="TODO">Todo</option>
+      <option value="IN_PROGRESS">In Progress</option>
+      <option value="DONE">Done</option>
+      <option value="BLOCKED">Blocked</option>
+    </select>
   );
 }

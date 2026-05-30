@@ -21,19 +21,19 @@ export default function Topbar({ user }: { user: User }) {
     <div
       className="h-12 flex items-center justify-between px-4 flex-shrink-0"
       style={{
-        backgroundColor: "#0f1117",
+        backgroundColor: "#1a1a1a",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       {/* Breadcrumb */}
 <div className="flex items-center gap-1.5 text-sm">
-  <span className="font-medium" style={{ color: "#e8e8e8" }}>
+  <span className="font-medium" style={{ color: "#f0f0f0" }}>
     TeamTasks
   </span>
   {parts.map((part, i) => (
     <span key={i} className="flex items-center gap-1.5">
-      <span style={{ color: "#6b7280" }}>/</span>
-      <span className="capitalize" style={{ color: i === parts.length - 1 ? "#e8e8e8" : "#6b7280" }}>
+      <span style={{ color: "#737373" }}>/</span>
+      <span className="capitalize" style={{ color: i === parts.length - 1 ? "#f0f0f0" : "#737373" }}>
         {part.replace(/-/g, " ")}
       </span>
     </span>
@@ -45,7 +45,7 @@ export default function Topbar({ user }: { user: User }) {
         <Link
           href="/dashboard/tasks/new"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#e8e8e8", color: "#0f1117" }}
+          style={{ backgroundColor: "#f0f0f0", color: "#1a1a1a" }}
         >
           <Plus className="w-3.5 h-3.5" />
           New Task
@@ -57,9 +57,9 @@ export default function Topbar({ user }: { user: User }) {
           <div
             className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium"
             style={{
-              backgroundColor: "#1c1e28",
+              backgroundColor: "#2a2a2a",
               border: "1px solid rgba(255,255,255,0.1)",
-              color: "#e8e8e8",
+              color: "#f0f0f0",
             }}
           >
             {user.name?.slice(0, 2).toUpperCase() ?? "??"}
@@ -69,7 +69,7 @@ export default function Topbar({ user }: { user: User }) {
             className="w-7 h-7 rounded-lg flex items-center justify-center transition-colors"
             style={{
               border: "1px solid rgba(255,255,255,0.08)",
-              color: "#6b7280",
+              color: "#737373",
             }}
           >
             <LogOut className="w-3.5 h-3.5" />

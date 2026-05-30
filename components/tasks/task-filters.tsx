@@ -27,9 +27,9 @@ export default function TaskFilters() {
   }
 
   const selectStyle = {
-    backgroundColor: "#161820",
+    backgroundColor: "#212121",
     border: "1px solid rgba(255,255,255,0.08)",
-    color: "#9ca3af",
+    color: "#a3a3a3",
     borderRadius: "0.5rem",
     padding: "6px 10px",
     fontSize: "12px",
@@ -42,18 +42,18 @@ export default function TaskFilters() {
       <div
         className="flex items-center gap-2 flex-1 min-w-[200px] px-3 py-1.5 rounded-lg"
         style={{
-          backgroundColor: "#161820",
+          backgroundColor: "#212121",
           border: "1px solid rgba(255,255,255,0.08)",
         }}
       >
-        <Search className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#6b7280" }} />
+        <Search className="w-3.5 h-3.5 flex-shrink-0" style={{ color: "#737373" }} />
         <input
           type="text"
           placeholder="Search tasks..."
           defaultValue={searchParams.get("search") ?? ""}
           onChange={(e) => handleChange("search", e.target.value)}
           className="bg-transparent text-sm outline-none w-full"
-          style={{ color: "#e8e8e8" }}
+          style={{ color: "#f0f0f0" }}
         />
       </div>
 

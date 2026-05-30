@@ -11,7 +11,7 @@ import TaskFilters from "@/components/tasks/task-filters";
 import { Pencil } from "lucide-react";
 
 const statusColors: Record<string, { bg: string; color: string }> = {
-  TODO: { bg: "rgba(255,255,255,0.06)", color: "#9ca3af" },
+  TODO: { bg: "rgba(255,255,255,0.06)", color: "#a3a3a3" },
   IN_PROGRESS: { bg: "rgba(59,130,246,0.15)", color: "#60a5fa" },
   DONE: { bg: "rgba(16,185,129,0.15)", color: "#34d399" },
   BLOCKED: { bg: "rgba(239,68,68,0.15)", color: "#f87171" },
@@ -74,10 +74,10 @@ export default async function TasksPage({
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-lg font-medium" style={{ color: "#e8e8e8" }}>
+          <h1 className="text-lg font-medium" style={{ color: "#f0f0f0" }}>
             All Tasks
           </h1>
-          <p className="text-sm mt-0.5" style={{ color: "#6b7280" }}>
+          <p className="text-sm mt-0.5" style={{ color: "#737373" }}>
             {filtered.length} tasks
             {params.search || params.status || params.importance || params.category
               ? " (filtered)"
@@ -87,7 +87,7 @@ export default async function TasksPage({
         <Link
           href="/dashboard/tasks/new"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#e8e8e8", color: "#0f1117" }}
+          style={{ backgroundColor: "#f0f0f0", color: "#1a1a1a" }}
         >
           + New Task
         </Link>
@@ -98,7 +98,7 @@ export default async function TasksPage({
       </Suspense>
 
       {filtered.length === 0 ? (
-        <p className="text-sm" style={{ color: "#6b7280" }}>
+        <p className="text-sm" style={{ color: "#737373" }}>
           No tasks found.
         </p>
       ) : (
@@ -110,7 +110,7 @@ export default async function TasksPage({
             <thead>
               <tr
                 style={{
-                  backgroundColor: "#161820",
+                  backgroundColor: "#212121",
                   borderBottom: "1px solid rgba(255,255,255,0.08)",
                 }}
               >
@@ -119,7 +119,7 @@ export default async function TasksPage({
                     <th
                       key={h}
                       className="text-left px-4 py-3 text-[11px] uppercase tracking-wider font-medium"
-                      style={{ color: "#6b7280" }}
+                      style={{ color: "#737373" }}
                     >
                       {h}
                     </th>
@@ -141,13 +141,13 @@ export default async function TasksPage({
                   >
                     <td
                       className="px-4 py-3 font-mono text-[11px]"
-                      style={{ color: "#6b7280" }}
+                      style={{ color: "#737373" }}
                     >
                       TT-{String(index + 1).padStart(2, "0")}
                     </td>
                     <td
                       className="px-4 py-3 font-medium"
-                      style={{ color: "#e8e8e8" }}
+                      style={{ color: "#f0f0f0" }}
                     >
                       {task.title}
                     </td>
@@ -175,19 +175,19 @@ export default async function TasksPage({
                     </td>
                     <td
                       className="px-4 py-3 text-[12px]"
-                      style={{ color: "#9ca3af" }}
+                      style={{ color: "#a3a3a3" }}
                     >
                       {categoryLabels[task.category] ?? task.category}
                     </td>
                     <td
                       className="px-4 py-3 text-[12px]"
-                      style={{ color: "#9ca3af" }}
+                      style={{ color: "#a3a3a3" }}
                     >
                       {task.assigneeName ?? task.assigneeEmail ?? "—"}
                     </td>
                     <td
                       className="px-4 py-3 text-[12px]"
-                      style={{ color: "#9ca3af" }}
+                      style={{ color: "#a3a3a3" }}
                     >
                       {task.dueDate
                         ? new Date(task.dueDate).toLocaleDateString()
@@ -200,7 +200,7 @@ export default async function TasksPage({
                           className="w-7 h-7 rounded flex items-center justify-center transition-colors"
                           style={{
                             border: "1px solid rgba(255,255,255,0.08)",
-                            color: "#9ca3af",
+                            color: "#a3a3a3",
                           }}
                         >
                           <Pencil className="w-3.5 h-3.5" />
