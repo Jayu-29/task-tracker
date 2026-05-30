@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { deleteTask } from "@/actions/tasks";
+import { Trash2 } from "lucide-react";
 
 export default function DeleteTaskButton({ taskId }: { taskId: string }) {
   const [loading, setLoading] = useState(false);
@@ -17,9 +18,13 @@ export default function DeleteTaskButton({ taskId }: { taskId: string }) {
     <button
       onClick={handleDelete}
       disabled={loading}
-      className="text-xs px-2 py-1 border border-red-200 text-red-600 rounded hover:bg-red-50 transition-colors disabled:opacity-50"
+      className="w-7 h-7 rounded flex items-center justify-center transition-colors disabled:opacity-50"
+      style={{
+        border: "1px solid rgba(239,68,68,0.3)",
+        color: "#f87171",
+      }}
     >
-      {loading ? "..." : "Delete"}
+      <Trash2 className="w-3.5 h-3.5" />
     </button>
   );
 }
